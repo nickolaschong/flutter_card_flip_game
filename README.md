@@ -9,8 +9,11 @@ If the player chooses correctly, show a message that says: "You won!"
 If the player chooses the wrong card, show a message that says: "You lost!"
 Choose the position of the Flutter logo at random every time the game starts.
 
-## Key Features
+## Key Highlights
 
 - Using a GlobalKey to modify the state of a child widget
-- Using page_flip_builder package
-- Using built-in WidgetBuilder / tear-offs
+- Using page_flip_builder package (flipping)
+- Using Riverpod + Freezed package (state management)
+- Using easy_debounce package (handle double click)
+- Using built-in VoidCallback / tear-offs
+ 
