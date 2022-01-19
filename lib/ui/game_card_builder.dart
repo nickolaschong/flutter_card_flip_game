@@ -1,6 +1,5 @@
 import 'dart:math';
 
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:page_flip_builder/page_flip_builder.dart';
@@ -66,56 +65,6 @@ class _GameCardBuilderState extends ConsumerState<GameCardBuilder> {
               : gameStateNotifier.lost(),
         );
       },
-    );
-  }
-}
-
-class OnlyOnePointerRecognizer extends OneSequenceGestureRecognizer {
-  int _p = 0;
-  @override
-  void addPointer(PointerDownEvent event) {
-    startTrackingPointer(event.pointer);
-    if (_p == 0) {
-      resolve(GestureDisposition.rejected);
-      _p = event.pointer;
-    } else {
-      resolve(GestureDisposition.accepted);
-    }
-  }
-
-  @override
-  String get debugDescription => 'only one pointer recognizer';
-
-  @override
-  void didStopTrackingLastPointer(int pointer) {}
-
-  @override
-  void handleEvent(PointerEvent event) {
-    if (!event.down && event.pointer == _p) {
-      _p = 0;
-    }
-  }
-}
-
-class OnlyOnePointerRecognizerWidget extends StatelessWidget {
-  final Widget child;
-
-  const OnlyOnePointerRecognizerWidget({
-    Key? key,
-    required this.child,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return RawGestureDetector(
-      gestures: <Type, GestureRecognizerFactory>{
-        OnlyOnePointerRecognizer:
-            GestureRecognizerFactoryWithHandlers<OnlyOnePointerRecognizer>(
-          () => OnlyOnePointerRecognizer(),
-          (OnlyOnePointerRecognizer instance) {},
-        ),
-      },
-      child: child,
     );
   }
 }
