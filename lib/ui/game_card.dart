@@ -1,4 +1,3 @@
-import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -23,8 +22,8 @@ class GameCard extends ConsumerWidget {
       child: IgnorePointer(
         ignoring: gameState != const GameState.start(),
         child: GestureDetector(
-          onTap: () => EasyDebounce.debounce(
-              'd', const Duration(milliseconds: 100), () => onFlip()),
+          onTap: onFlip,
+          // onTap: onFlip,
           child: Card(
             color: isFront ? Colors.yellow : Colors.white,
             child: SizedBox(

@@ -12,6 +12,7 @@ class GameRetry extends ConsumerWidget {
 
     return gameState.maybeWhen(
       start: () => const SizedBox.shrink(),
+      retry: () => const SizedBox.shrink(),
       orElse: () {
         return Column(
           children: [
@@ -21,7 +22,7 @@ class GameRetry extends ConsumerWidget {
             ElevatedButton(
               style: ElevatedButton.styleFrom(shape: const StadiumBorder()),
               onPressed: () {
-                ref.read(gameStateProvider.notifier).start();
+                ref.read(gameStateProvider.notifier).retry();
               },
               child: const Text('Try Again'),
             ),
