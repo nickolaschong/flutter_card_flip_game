@@ -14,6 +14,5 @@ Choose the position of the Flutter logo at random every time the game starts.
 - Using a GlobalKey to modify the state of a child widget
 - Using page_flip_builder package (flipping)
 - Using Riverpod + Freezed package (state management)
-- Using easy_debounce package (handle double click)
 - Using built-in VoidCallback / tear-offs
  

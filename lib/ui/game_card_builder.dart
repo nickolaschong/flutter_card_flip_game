@@ -16,12 +16,20 @@ class GameCardBuilder extends ConsumerStatefulWidget {
 
 class _GameCardBuilderState extends ConsumerState<GameCardBuilder> {
   static const _numberOfCards = 2;
-  late int _flutterLogoCardIndex;
   final random = Random();
+
+  late int _flutterLogoCardIndex;
+  late int _selectedIndex;
+  late List<GlobalKey<PageFlipBuilderState>> _pageFlipKeys;
 
   @override
   void initState() {
+    _selectedIndex = -1;
     _shuffleFlutterLogoCardIndex();
+    _pageFlipKeys = List.generate(
+      _numberOfCards,
+      (index) => GlobalKey<PageFlipBuilderState>(),
+    );
     super.initState();
   }
 
@@ -32,8 +40,12 @@ class _GameCardBuilderState extends ConsumerState<GameCardBuilder> {
   @override
   Widget build(BuildContext context) {
     ref.listen(gameStateProvider, (previousState, currentState) {
-      if (currentState == const GameState.start()) {
-        setState(_shuffleFlutterLogoCardIndex);
+      if (currentState == const GameState.retry()) {
+        setState(() {
+          _pageFlipKeys[_selectedIndex].currentState?.flip();
+          _selectedIndex = -1;
+          _shuffleFlutterLogoCardIndex();
+        });
       }
     });
 
@@ -45,24 +57,36 @@ class _GameCardBuilderState extends ConsumerState<GameCardBuilder> {
     return ListView.builder(
       itemCount: _numberOfCards,
       itemBuilder: (_, index) {
-        final _pageFlipKey = GlobalKey<PageFlipBuilderState>();
         final isShowFlutterLogo = index == _flutterLogoCardIndex;
         return PageFlipBuilder(
-          key: _pageFlipKey,
+          key: _pageFlipKeys[index],
           interactiveFlipEnabled: false,
           frontBuilder: (_) => GameCard(
               isFront: true,
               onFlip: () {
-                _pageFlipKey.currentState?.flip();
+                // Handle multitouch
+                if (_selectedIndex != -1) {
+                  return;
+                } else {
+                  _selectedIndex = index;
+                  _pageFlipKeys[index].currentState?.flip();
+                }
               }),
           backBuilder: (_) => GameCard(
             isFront: false,
             isShowFlutterLogo: isShowFlutterLogo,
             onFlip: () {},
           ),
-          onFlipComplete: (_) => isShowFlutterLogo
-              ? gameStateNotifier.won()
-              : gameStateNotifier.lost(),
+          onFlipComplete: (_) {
+            final gameState = ref.read(gameStateProvider);
+            if (gameState == const GameState.start()) {
+              isShowFlutterLogo
+                  ? gameStateNotifier.won()
+                  : gameStateNotifier.lost();
+            } else if (gameState == const GameState.retry()) {
+              gameStateNotifier.start();
+            }
+          },
         );
       },
     );

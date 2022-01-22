@@ -22,6 +22,10 @@ class _$GameStateTearOff {
     return const Start();
   }
 
+  Retry retry() {
+    return const Retry();
+  }
+
   Won won() {
     return const Won();
   }
@@ -39,6 +43,7 @@ mixin _$GameState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() start,
+    required TResult Function() retry,
     required TResult Function() won,
     required TResult Function() lost,
   }) =>
@@ -46,6 +51,7 @@ mixin _$GameState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? start,
+    TResult Function()? retry,
     TResult Function()? won,
     TResult Function()? lost,
   }) =>
@@ -53,6 +59,7 @@ mixin _$GameState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? start,
+    TResult Function()? retry,
     TResult Function()? won,
     TResult Function()? lost,
     required TResult orElse(),
@@ -61,6 +68,7 @@ mixin _$GameState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Start value) start,
+    required TResult Function(Retry value) retry,
     required TResult Function(Won value) won,
     required TResult Function(Lost value) lost,
   }) =>
@@ -68,6 +76,7 @@ mixin _$GameState {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(Start value)? start,
+    TResult Function(Retry value)? retry,
     TResult Function(Won value)? won,
     TResult Function(Lost value)? lost,
   }) =>
@@ -75,6 +84,7 @@ mixin _$GameState {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Start value)? start,
+    TResult Function(Retry value)? retry,
     TResult Function(Won value)? won,
     TResult Function(Lost value)? lost,
     required TResult orElse(),
@@ -136,6 +146,7 @@ class _$Start implements Start {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() start,
+    required TResult Function() retry,
     required TResult Function() won,
     required TResult Function() lost,
   }) {
@@ -146,6 +157,7 @@ class _$Start implements Start {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? start,
+    TResult Function()? retry,
     TResult Function()? won,
     TResult Function()? lost,
   }) {
@@ -156,6 +168,7 @@ class _$Start implements Start {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? start,
+    TResult Function()? retry,
     TResult Function()? won,
     TResult Function()? lost,
     required TResult orElse(),
@@ -170,6 +183,7 @@ class _$Start implements Start {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Start value) start,
+    required TResult Function(Retry value) retry,
     required TResult Function(Won value) won,
     required TResult Function(Lost value) lost,
   }) {
@@ -180,6 +194,7 @@ class _$Start implements Start {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(Start value)? start,
+    TResult Function(Retry value)? retry,
     TResult Function(Won value)? won,
     TResult Function(Lost value)? lost,
   }) {
@@ -190,6 +205,7 @@ class _$Start implements Start {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Start value)? start,
+    TResult Function(Retry value)? retry,
     TResult Function(Won value)? won,
     TResult Function(Lost value)? lost,
     required TResult orElse(),
@@ -203,6 +219,120 @@ class _$Start implements Start {
 
 abstract class Start implements GameState {
   const factory Start() = _$Start;
+}
+
+/// @nodoc
+abstract class $RetryCopyWith<$Res> {
+  factory $RetryCopyWith(Retry value, $Res Function(Retry) then) =
+      _$RetryCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$RetryCopyWithImpl<$Res> extends _$GameStateCopyWithImpl<$Res>
+    implements $RetryCopyWith<$Res> {
+  _$RetryCopyWithImpl(Retry _value, $Res Function(Retry) _then)
+      : super(_value, (v) => _then(v as Retry));
+
+  @override
+  Retry get _value => super._value as Retry;
+}
+
+/// @nodoc
+
+class _$Retry implements Retry {
+  const _$Retry();
+
+  @override
+  String toString() {
+    return 'GameState.retry()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is Retry);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() start,
+    required TResult Function() retry,
+    required TResult Function() won,
+    required TResult Function() lost,
+  }) {
+    return retry();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? start,
+    TResult Function()? retry,
+    TResult Function()? won,
+    TResult Function()? lost,
+  }) {
+    return retry?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? start,
+    TResult Function()? retry,
+    TResult Function()? won,
+    TResult Function()? lost,
+    required TResult orElse(),
+  }) {
+    if (retry != null) {
+      return retry();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Start value) start,
+    required TResult Function(Retry value) retry,
+    required TResult Function(Won value) won,
+    required TResult Function(Lost value) lost,
+  }) {
+    return retry(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Start value)? start,
+    TResult Function(Retry value)? retry,
+    TResult Function(Won value)? won,
+    TResult Function(Lost value)? lost,
+  }) {
+    return retry?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Start value)? start,
+    TResult Function(Retry value)? retry,
+    TResult Function(Won value)? won,
+    TResult Function(Lost value)? lost,
+    required TResult orElse(),
+  }) {
+    if (retry != null) {
+      return retry(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class Retry implements GameState {
+  const factory Retry() = _$Retry;
 }
 
 /// @nodoc
@@ -244,6 +374,7 @@ class _$Won implements Won {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() start,
+    required TResult Function() retry,
     required TResult Function() won,
     required TResult Function() lost,
   }) {
@@ -254,6 +385,7 @@ class _$Won implements Won {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? start,
+    TResult Function()? retry,
     TResult Function()? won,
     TResult Function()? lost,
   }) {
@@ -264,6 +396,7 @@ class _$Won implements Won {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? start,
+    TResult Function()? retry,
     TResult Function()? won,
     TResult Function()? lost,
     required TResult orElse(),
@@ -278,6 +411,7 @@ class _$Won implements Won {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Start value) start,
+    required TResult Function(Retry value) retry,
     required TResult Function(Won value) won,
     required TResult Function(Lost value) lost,
   }) {
@@ -288,6 +422,7 @@ class _$Won implements Won {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(Start value)? start,
+    TResult Function(Retry value)? retry,
     TResult Function(Won value)? won,
     TResult Function(Lost value)? lost,
   }) {
@@ -298,6 +433,7 @@ class _$Won implements Won {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Start value)? start,
+    TResult Function(Retry value)? retry,
     TResult Function(Won value)? won,
     TResult Function(Lost value)? lost,
     required TResult orElse(),
@@ -352,6 +488,7 @@ class _$Lost implements Lost {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() start,
+    required TResult Function() retry,
     required TResult Function() won,
     required TResult Function() lost,
   }) {
@@ -362,6 +499,7 @@ class _$Lost implements Lost {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? start,
+    TResult Function()? retry,
     TResult Function()? won,
     TResult Function()? lost,
   }) {
@@ -372,6 +510,7 @@ class _$Lost implements Lost {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? start,
+    TResult Function()? retry,
     TResult Function()? won,
     TResult Function()? lost,
     required TResult orElse(),
@@ -386,6 +525,7 @@ class _$Lost implements Lost {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Start value) start,
+    required TResult Function(Retry value) retry,
     required TResult Function(Won value) won,
     required TResult Function(Lost value) lost,
   }) {
@@ -396,6 +536,7 @@ class _$Lost implements Lost {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(Start value)? start,
+    TResult Function(Retry value)? retry,
     TResult Function(Won value)? won,
     TResult Function(Lost value)? lost,
   }) {
@@ -406,6 +547,7 @@ class _$Lost implements Lost {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Start value)? start,
+    TResult Function(Retry value)? retry,
     TResult Function(Won value)? won,
     TResult Function(Lost value)? lost,
     required TResult orElse(),

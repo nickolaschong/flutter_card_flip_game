@@ -9,6 +9,7 @@ final gameStateProvider = StateNotifierProvider<GameStateNotifier, GameState>(
 @freezed
 class GameState with _$GameState {
   const factory GameState.start() = Start;
+  const factory GameState.retry() = Retry;
   const factory GameState.won() = Won;
   const factory GameState.lost() = Lost;
 }
@@ -18,6 +19,10 @@ class GameStateNotifier extends StateNotifier<GameState> {
 
   void start() {
     state = const GameState.start();
+  }
+
+  void retry() {
+    state = const GameState.retry();
   }
 
   void won() {
